@@ -240,3 +240,6 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+/astyle.exe
+/call_Artistic_Style.astylerc
+/call_Artistic_Style.bat

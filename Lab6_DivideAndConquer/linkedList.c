@@ -148,18 +148,18 @@ void list_Display(struct List* list)
 
     char * string = malloc(10 * list->size * sizeof(char)); // char's per item * number of items * size of char
     intArrayToString(
-                    string,
-                    list->size*10,
-                    values,
-                    list->size
-                    );
+        string,
+        list->size*10,
+        values,
+        list->size
+    );
 
 
     printf(
-           "\t\tList:[ size:( %d ) , entities:(%s) ]\n",
-           list->size,
-           string
-           );
+        "\t\tList:[ size:( %d ) , entities:(%s) ]\n",
+        list->size,
+        string
+    );
 }
 
 int list_Read(struct List* list, int index, int* entity)
@@ -290,55 +290,55 @@ void list_InsertionSort(struct List* list)
     struct ListNode* pivot = list->head;
     //printf("\t Pivot : %d\n",pivot->data);
 
-	while (pivot != NULL)
-	{
-		//printf("\t Pivot : %d\n", pivot->data);
-		//list_Display(list);
-		//printf("\n");
+    while (pivot != NULL)
+    {
+        //printf("\t Pivot : %d\n", pivot->data);
+        //list_Display(list);
+        //printf("\n");
 
-		struct ListNode* nextPivot = pivot->next;
+        struct ListNode* nextPivot = pivot->next;
 
-		struct ListNode* curr = list->head;
+        struct ListNode* curr = list->head;
 
-		while (curr != pivot)
-		{
-			if (curr->data > pivot->data)
-			{
-				if (pivot->next != NULL)
-				{
-					pivot->next->prev = pivot->prev;
-				}
-				else
-				{
-					list->tail = pivot->prev;
-				}
+        while (curr != pivot)
+        {
+            if (curr->data > pivot->data)
+            {
+                if (pivot->next != NULL)
+                {
+                    pivot->next->prev = pivot->prev;
+                }
+                else
+                {
+                    list->tail = pivot->prev;
+                }
 
-				if (pivot->prev != NULL)
-				{
-					pivot->prev->next = pivot->next;
-				}
+                if (pivot->prev != NULL)
+                {
+                    pivot->prev->next = pivot->next;
+                }
 
-				pivot->prev = curr->prev;
-				pivot->next = curr;
+                pivot->prev = curr->prev;
+                pivot->next = curr;
 
-				if (curr->prev != NULL)
-				{
-					curr->prev->next = pivot;
-				}
-				curr->prev = pivot;
+                if (curr->prev != NULL)
+                {
+                    curr->prev->next = pivot;
+                }
+                curr->prev = pivot;
 
-				if (list->head == curr) 
-				{
-					list->head = pivot;
-				}
+                if (list->head == curr)
+                {
+                    list->head = pivot;
+                }
 
-				break;
-			}
+                break;
+            }
 
-			curr = curr->next;
-		}
-		pivot = nextPivot;
-	}
+            curr = curr->next;
+        }
+        pivot = nextPivot;
+    }
     list->isSorted = 1;
 }
 
@@ -388,18 +388,18 @@ int list_AddOrdered(struct List* list, int entity)
 
 int list_BinarySearch(struct List* list, int entity)
 {
-	// doing a binary search on a linked list makes no sense, so just do a linear search
-	return list_Search(list, entity);
+    // doing a binary search on a linked list makes no sense, so just do a linear search
+    return list_Search(list, entity);
 }
 
 void list_QuickSort(struct List* list)
 {
-	if (list->isSorted)
-	{
-		return;
-	}
-	quickSort(list->head, list->tail);
-	list->isSorted = 1;
+    if (list->isSorted)
+    {
+        return;
+    }
+    quickSort(list->head, list->tail);
+    list->isSorted = 1;
 }
 
 
@@ -409,32 +409,32 @@ void list_QuickSort(struct List* list)
 
 void quickSort(struct ListNode* left, struct ListNode* right)
 {
-	if ((right != NULL) && (left != right) && (left != right->next)) 
-	{
-		struct ListNode* piviot = partition(left, right);
-		quickSort(left, piviot->prev);
-		quickSort(piviot->next, right);
-	}
+    if ((right != NULL) && (left != right) && (left != right->next))
+    {
+        struct ListNode* piviot = partition(left, right);
+        quickSort(left, piviot->prev);
+        quickSort(piviot->next, right);
+    }
 }
 
 struct ListNode* partition(struct ListNode* left, struct ListNode* right)
 {
-	int data = right->data;
+    int data = right->data;
 
-	struct ListNode* i = left->prev;
+    struct ListNode* i = left->prev;
 
-	for (struct ListNode* j = left; j != right; j=j->next)
-	{
-		if (j->data <= data) 
-		{
-			i = (i == NULL) ? left : i->next;
+    for (struct ListNode* j = left; j != right; j=j->next)
+    {
+        if (j->data <= data)
+        {
+            i = (i == NULL) ? left : i->next;
 
-			swap(&i->data, &j->data);
-		}
-	}
-	i = (i == NULL) ? left : i->next;
-	swap(&i->data, &right->data);
-	return i;
+            swap(&i->data, &j->data);
+        }
+    }
+    i = (i == NULL) ? left : i->next;
+    swap(&i->data, &right->data);
+    return i;
 }
 
 // returns one if the node is found
@@ -479,19 +479,19 @@ int intArrayToString( char* output, int output_length, int* data, int data_lengt
         int length = snprintf(output, output_length, "%d,", *data++);
         if (length >= output_length)
         {
-          // not enough space
-          return -1;
+            // not enough space
+            return -1;
         }
         writtenLenght += length;
         output += length;
         output_length -= length;
     }
-  return writtenLenght;
+    return writtenLenght;
 }
 
 void swap(int* a, int* b)
 {
-	int c = *a;
-	*a = *b;
-	*b = c;
+    int c = *a;
+    *a = *b;
+    *b = c;
 }

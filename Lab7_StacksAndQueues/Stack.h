@@ -4,14 +4,14 @@
 /// ====
 /// Types
 /// ====
-typedef struct Stack;
+typedef struct Stack Stack;
 
 
 /// ====
 /// Constructors and Destructor
 /// ====
 Stack* stack_Constructor();
-void stack_Constructor(Stack* stack);
+void stack_Deconstructor(Stack* stack);
 
 
 /// ====

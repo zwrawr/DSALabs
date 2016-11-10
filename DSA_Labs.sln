@@ -17,6 +17,13 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lab6_DivideAndConquer", "La
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lab7_StacksAndQueues", "Lab7_StacksAndQueues\Lab7_StacksAndQueues.vcxproj", "{33660232-0CD9-486C-84F7-2C07A223AD59}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{28A3373C-66D5-4899-92DB-83117C3539F9}"
+	ProjectSection(SolutionItems) = preProject
+		astyle.exe = astyle.exe
+		call_Artistic_Style.astylerc = call_Artistic_Style.astylerc
+		call_Artistic_Style.bat = call_Artistic_Style.bat
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		array|x64 = array|x64
