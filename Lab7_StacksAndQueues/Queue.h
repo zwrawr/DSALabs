@@ -10,8 +10,8 @@ typedef struct Queue;
 /// ====
 /// Constructors and Destructor
 /// ====
-Queue* queue_Constructor();
-void queue_Constructor(Queue* queue);
+Queue *queue_Constructor();
+void queue_Constructor(Queue *queue);
 
 
 /// ====

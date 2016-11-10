@@ -10,8 +10,8 @@ typedef struct Stack Stack;
 /// ====
 /// Constructors and Destructor
 /// ====
-Stack* stack_Constructor();
-void stack_Deconstructor(Stack* stack);
+Stack *stack_Constructor();
+void stack_Deconstructor(Stack *stack);
 
 
 /// ====
