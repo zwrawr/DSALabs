@@ -2,16 +2,16 @@
 #define QUEUE_H_INCLUDED
 
 /// ====
-/// Types
+/// TypeDefs
 /// ====
-typedef struct Queue;
+typedef struct Queue Queue;
 
 
 /// ====
 /// Constructors and Destructor
 /// ====
 Queue *queue_Constructor();
-void queue_Constructor(Queue *queue);
+void queue_Deconstructor(Queue *queue);
 
 
 /// ====

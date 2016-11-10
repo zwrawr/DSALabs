@@ -2,7 +2,7 @@
 #define STACK_H_INCLUDED
 
 /// ====
-/// Types
+/// TypeDefs
 /// ====
 typedef struct Stack Stack;
 

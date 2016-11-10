@@ -94,6 +94,12 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>cd $(SolutionDir) &amp;&amp; start call_Artistic_Style.bat $(TargetName)\*.c $(TargetName)*.h </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>runs astyle</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -126,6 +132,12 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>cd $(SolutionDir) &amp;&amp; start call_Artistic_Style.bat $(TargetName)\*.c $(TargetName)*.h </Command>
+    </PreBuildEvent>
+    <PreBuildEvent>
+      <Message>runs astyle</Message>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
