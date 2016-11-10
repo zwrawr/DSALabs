@@ -243,3 +243,4 @@ ModelManifest.xml
 /astyle.exe
 /call_Artistic_Style.astylerc
 /call_Artistic_Style.bat
+*.orig
