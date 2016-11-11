@@ -17,5 +17,11 @@ void queue_Deconstructor(Queue *queue);
 /// ====
 /// Functions
 /// ====
+int queue_isEmpty(Queue *queue);
+int queue_Enqueue(Queue *queue, int value);
+int queue_Dequeue(Queue *queue, int* dequeuedvalue);
+int queue_Peek(Queue *queue, int index, int* peeked);
+
+
 
 #endif // QUEUE_H_INCLUDED
