@@ -104,7 +104,7 @@ int queue_isEmpty(Queue *queue)
         return -1;
     }
     
-    if (queue->head == NULL || queue->tail == NULL)
+    if (queue->length == 0)
     {
         return 1;
     }
@@ -125,10 +125,20 @@ int queue_Enqueue(Queue *queue, int value)
     
     Item *item = itemConstructor(value);
     
-    queue->head->prev = item;
-    item->next = queue->head;
-    item->prev = NULL;
-    queue->head = item;
+    if (queue->length == 0)
+    {
+        queue->head = item;
+        queue->tail = item;
+        item->next = NULL;
+        item->prev = NULL;
+    }
+    else
+    {
+        queue->head->prev = item;
+        item->next = queue->head;
+        item->prev = NULL;
+        queue->head = item;
+    }
     
     queue->length++;
     
@@ -144,14 +154,14 @@ int queue_Dequeue(Queue *queue, int *dequeuedvalue)
         return -1;
     }
     
-    if ((queue->length == 0) || (queue->head == NULL && queue->tail == NULL))
+    if ((queue->length == 0))
     {
         return 0;
     }
     
     Item *last = queue->tail;
     
-    last->prev->next = NULL;
+    last->prev->next = NULL; // what if there is only one item in the queue?
     queue->tail = last->prev;
     
     itemDeconstructor(last);
@@ -159,6 +169,7 @@ int queue_Dequeue(Queue *queue, int *dequeuedvalue)
     return 1;
 }
 
+// returns 1 if peek was successful, 0 if it was unsuccessful, -1 if queue is null
 int queue_Peek(Queue *queue, int index, int *peeked)
 {
     if (queue == NULL)
