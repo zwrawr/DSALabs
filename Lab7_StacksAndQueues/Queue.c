@@ -151,18 +151,34 @@ int queue_Dequeue(Queue *queue, int *dequeuedvalue)
 {
     if (queue == NULL)
     {
+        // this queue hasnt been initialized
         return -1;
     }
     
-    if ((queue->length == 0))
+    if (queue->length == 0)
     {
+        // nothing to dequeue
         return 0;
     }
     
     Item *last = queue->tail;
+    (*dequeuedvalue) = last->value;
     
-    last->prev->next = NULL; // what if there is only one item in the queue?
-    queue->tail = last->prev;
+    if (queue->length == 1)
+    {
+        // queue will be empty once we dequeue this item
+        queue->tail = NULL;
+        queue->head = NULL;
+        
+        queue->length = 0;
+    }
+    else
+    {
+        last->prev->next = NULL;
+        queue->tail = last->prev;
+        
+        queue->length--;
+    }
     
     itemDeconstructor(last);
     

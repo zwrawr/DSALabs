@@ -37,6 +37,7 @@ Stack *stack_Constructor()
     
     return stack;
 }
+
 void stack_Deconstructor(Stack *stack)
 {
     free(stack->array);
@@ -95,11 +96,11 @@ int stack_Push(Stack *stack, int value)
     if (stack_isFull(stack) != 0)
     {
         stack->length *= 2;
-        stack->array = realloc(stack->array, stack->length);
+        stack->array = realloc(stack->array, stack->length * sizeof(int));
     }
     
-    stack->top++;
     stack->array[stack->top] = value;
+    stack->top++;
     
     return 1;
 }
@@ -114,8 +115,8 @@ int stack_Pop(Stack *stack, int *popped)
     
     if (stack_isEmpty(stack) == 0)
     {
-        (*popped) = stack->array[stack->top];
         stack->top--;
+        (*popped) = stack->array[stack->top];
         return 1;
     }
     else
