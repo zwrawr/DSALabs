@@ -18,10 +18,13 @@
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Queue.c">
+    <ClCompile Include="Stack.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Stack.c">
+    <ClCompile Include="ArrayQueue.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ListQueue.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
