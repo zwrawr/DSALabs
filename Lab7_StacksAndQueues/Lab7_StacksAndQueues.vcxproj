@@ -132,6 +132,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>cd $(SolutionDir) &amp;&amp; start  call_Artistic_Style.bat $(TargetName)/*.c $(TargetName)/*.h </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ArrayQueue|x64'">
     <ClCompile>
@@ -146,6 +149,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>cd $(SolutionDir) &amp;&amp; start  call_Artistic_Style.bat $(TargetName)/*.c $(TargetName)/*.h </Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ArrayQueue.c">

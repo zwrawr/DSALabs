@@ -36,6 +36,8 @@ int main(void)
 /// ====
 void test_MakeQueue()
 {
+    printf("= Make Queue\n");
+    
     Queue *queue = queue_Constructor();
     
     assert(queue_isEmpty(queue) == 1 && "assert that the result of queue_isEmpty() on an empty list is 1");
@@ -58,12 +60,16 @@ void test_MakeQueue()
 
 void test_LargeQueue()
 {
+    printf("= Large Queue\n");
+    
     int test_size = 10000;
     int *test_values = malloc(test_size * sizeof(int));
     
     Queue *test_queue = queue_Constructor();
     
     // populate queue
+    printf("=\tpopulate queue\n");
+    
     for (int i = 0 ; i < test_size; i++ )
     {
         int success = queue_Enqueue(test_queue, i * 2);
@@ -71,7 +77,11 @@ void test_LargeQueue()
         test_values[i] = i * 2;
     }
     
+    queue_Display(test_queue);
+    
     // peek at queue
+    printf("=\tpeek at queue\n");
+    
     for (int i = 0; i < test_size; i++)
     {
         int a = -1;
@@ -81,6 +91,8 @@ void test_LargeQueue()
     }
     
     // depopulate queue
+    printf("=\tdepopulate queue\n");
+    
     for (int i = 0; i < test_size; i++)
     {
         int a = -1;
@@ -90,11 +102,14 @@ void test_LargeQueue()
     }
     
     // deconstruct queue
+    printf("=\tdeconstruct queue\n");
     queue_Deconstructor(test_queue);
 }
 
 void test_MakeStack()
 {
+    printf("= Make Stack\n");
+    
     Stack *stack = stack_Constructor();
     
     assert(stack_isEmpty(stack) == 1 && "assert that the result of stack_isEmpty() on an empty stack is 1");
@@ -115,12 +130,16 @@ void test_MakeStack()
 
 void test_LargeStack()
 {
+    printf("= Large Stack\n");
+    
     int test_size = 10000;
     int *test_values = malloc(test_size * sizeof(int));
     
     Stack *test_stack = stack_Constructor();
     
     // populate stack
+    printf("=\tpopulate stack\n");
+    
     for (int i = 0; i < test_size; i++)
     {
         int success = stack_Push(test_stack, i * 2);
@@ -129,6 +148,8 @@ void test_LargeStack()
     }
     
     // peek at stack
+    printf("=\tpeek at stack\n");
+    
     for (int i = 0; i < test_size; i++)
     {
         int a = -1;
@@ -137,7 +158,9 @@ void test_LargeStack()
         assert(test_values[i] == a && "assert that peeked value is as expected");
     }
     
-    // depopulate queue
+    // depopulate stack
+    printf("=\tdepopulate stack\n");
+    
     for (int i = 0; i < test_size; i++)
     {
         int a = -1;
@@ -146,6 +169,7 @@ void test_LargeStack()
         assert(test_values[test_size - i - 1] == a && "assert that poped value is as expected");
     }
     
-    // deconstruct queue
+    // deconstruct stack
+    printf("=\tdeconstruct stack\n");
     stack_Deconstructor(test_stack);
 }

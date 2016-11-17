@@ -19,8 +19,9 @@ void queue_Deconstructor(Queue *queue);
 /// ====
 int queue_isEmpty(Queue *queue);
 int queue_Enqueue(Queue *queue, int value);
-int queue_Dequeue(Queue *queue, int* dequeuedvalue);
-int queue_Peek(Queue *queue, int index, int* peeked);
+int queue_Dequeue(Queue *queue, int *dequeuedvalue);
+int queue_Peek(Queue *queue, int index, int *peeked);
+void queue_Display(Queue *queue);
 
 
 

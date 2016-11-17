@@ -30,8 +30,8 @@ void itemDeconstructor(Item *item);
 struct Queue
 {
     int length;
-    Item *head;
-    Item *tail;
+    Item *front;
+    Item *back;
 };
 
 struct Item
@@ -52,8 +52,8 @@ Queue *queue_Constructor()
     queue = malloc(sizeof(Queue));
     
     queue->length = 0;
-    queue->head = NULL;
-    queue->tail = NULL;
+    queue->front = NULL;
+    queue->back = NULL;
     
     return queue;
 }
@@ -61,7 +61,7 @@ Queue *queue_Constructor()
 void queue_Deconstructor(Queue *queue)
 {
     Item *curr;
-    Item *next = queue->head;
+    Item *next = queue->front;
     
     while (next != NULL)
     {
@@ -127,17 +127,17 @@ int queue_Enqueue(Queue *queue, int value)
     
     if (queue->length == 0)
     {
-        queue->head = item;
-        queue->tail = item;
+        queue->front = item;
+        queue->back = item;
         item->next = NULL;
         item->prev = NULL;
     }
     else
     {
-        queue->head->prev = item;
-        item->next = queue->head;
+        queue->front->prev = item;
+        item->next = queue->front;
         item->prev = NULL;
-        queue->head = item;
+        queue->front = item;
     }
     
     queue->length++;
@@ -161,21 +161,21 @@ int queue_Dequeue(Queue *queue, int *dequeuedvalue)
         return 0;
     }
     
-    Item *last = queue->tail;
+    Item *last = queue->back;
     (*dequeuedvalue) = last->value;
     
     if (queue->length == 1)
     {
         // queue will be empty once we dequeue this item
-        queue->tail = NULL;
-        queue->head = NULL;
+        queue->back = NULL;
+        queue->front = NULL;
         
         queue->length = 0;
     }
     else
     {
         last->prev->next = NULL;
-        queue->tail = last->prev;
+        queue->back = last->prev;
         
         queue->length--;
     }
@@ -198,7 +198,7 @@ int queue_Peek(Queue *queue, int index, int *peeked)
         return 0;
     }
     
-    Item *item = queue->tail;
+    Item *item = queue->back;
     
     for (int j = 0; j < index; j++)
     {
@@ -210,6 +210,22 @@ int queue_Peek(Queue *queue, int index, int *peeked)
     return 1;
 }
 
+void queue_Display(Queue *queue)
+{
+    printf("\t\t\t= QUEUE \t[ ");
+    
+    Item *item = queue->back;
+    
+    for (int i = 0; i < queue->length; i++)
+    {
+        printf(" %d:(%d) ", i, item->value);
+        
+        item = item->prev;
+        
+    }
+    
+    printf(" ] \n");
+}
 
 
 /// ====

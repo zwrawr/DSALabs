@@ -16,7 +16,7 @@
 /// ====
 /// Prototypes
 /// ====
-
+void expand(Queue *queue);
 
 /// ====
 /// Structures
@@ -24,10 +24,14 @@
 
 struct Queue
 {
-    int length;
-    int* array;
-	int* start;
-	int* end;
+    int capacity;
+    int count;
+    
+    int *bufferStart;
+    int *bufferEnd;
+    
+    int *front;
+    int *back;
 };
 
 
@@ -40,17 +44,21 @@ Queue *queue_Constructor()
     Queue *queue;
     queue = malloc(sizeof(Queue));
     
-    queue->length = INITIAL_QUEUE_SIZE;
-    queue->array = malloc(INITIAL_QUEUE_SIZE * sizeof(int));
-    queue->start = queue->array;
-	queue->end = queue->array;
+    queue->count = 0;
+    queue->capacity = INITIAL_QUEUE_SIZE;
+    
+    queue->bufferStart = malloc(INITIAL_QUEUE_SIZE * sizeof(int));
+    queue->bufferEnd = queue->bufferStart + queue->capacity;
+    
+    queue->front = queue->bufferStart;
+    queue->back = queue->bufferStart;
     
     return queue;
 }
 
 void queue_Deconstructor(Queue *queue)
 {
-	free(queue->array);
+    free(queue->bufferStart);
     
     free(queue);
 }
@@ -68,7 +76,7 @@ int queue_isEmpty(Queue *queue)
         return -1;
     }
     
-    if (queue->end == queue->start)
+    if (queue->count == 0)
     {
         return 1;
     }
@@ -86,9 +94,24 @@ int queue_Enqueue(Queue *queue, int value)
     {
         return -1;
     }
-        
-	*queue->end = value;
-	queue->end++;
+    
+    if (queue->count == (queue->capacity - 1))
+    {
+        expand(queue);
+    }
+    
+    *queue->front = value;
+    
+    if (queue->front == queue->bufferEnd)
+    {
+        queue->front = queue->bufferStart;
+    }
+    else
+    {
+        queue->front++;
+    }
+    
+    queue->count++;
     
     return 1;
     
@@ -103,10 +126,24 @@ int queue_Dequeue(Queue *queue, int *dequeuedvalue)
         return -1;
     }
     
-	*dequeuedvalue = *queue->start;
-
-	queue->start++;
-        
+    if (queue->count == 0)
+    {
+        return 0;
+    }
+    
+    *dequeuedvalue = *queue->back;
+    
+    if (queue->back == queue->bufferEnd)
+    {
+        queue->back = queue->bufferStart;
+    }
+    else
+    {
+        queue->back++;
+    }
+    
+    queue->count--;
+    
     return 1;
 }
 
@@ -118,14 +155,53 @@ int queue_Peek(Queue *queue, int index, int *peeked)
         return -1;
     }
     
-    if (index < 0 || index >= queue->length)
+    if (index < 0 || index >= queue->count)
     {
         return 0;
     }
     
-	*peeked = queue->array[index];
+    
+    int *p = queue->back;
+    
+    for (int i = 0; i < index; i++)
+    {
+        if (p == queue->bufferEnd)
+        {
+            p = queue->bufferStart;
+        }
+        else
+        {
+            p++;
+        }
+    }
+    
+    *peeked = *p;
     
     return 1;
+}
+
+void queue_Display(Queue *queue)
+{
+    printf("\t\t\t= QUEUE \t[ ");
+    
+    int *p = queue->back;
+    
+    for (int i = 0; i < queue->count; i++)
+    {
+        printf(" %d:(%d) ", i , *p);
+        
+        if (p == queue->bufferEnd)
+        {
+            p = queue->bufferStart;
+        }
+        else
+        {
+            p++;
+        }
+    }
+    
+    printf(" ] \n");
+    
 }
 
 
@@ -133,3 +209,42 @@ int queue_Peek(Queue *queue, int index, int *peeked)
 /// ====
 /// Helper Functions
 /// ====
+
+void expand(Queue *queue)
+{
+    //tmp storage for the queue
+    int *tmp = malloc(queue->count * sizeof(int));
+    
+    // populate the tmp queue, make the first element of the tmp the oldest value in the queue
+    int *p = queue->back;
+    
+    for (int i = 0; i < queue->count; i++)
+    {
+        tmp[i] = *p;
+        
+        if (p == queue->bufferEnd)
+        {
+            p = queue->bufferStart;
+        }
+        else
+        {
+            p++;
+        }
+    }
+    
+    // now expand the original buffer
+    queue->capacity += (int)(queue->capacity * 0.5);
+    queue->bufferStart = realloc(queue->bufferStart, queue->capacity * sizeof(int));
+    queue->bufferEnd = queue->bufferStart + queue->capacity;
+    queue->back = queue->bufferStart;
+    queue->front = queue->back + queue->count;
+    
+    // now add the values stroed in the tmp array back to the orignal queue
+    for (int i = 0; i < queue->count; i++)
+    {
+        queue->back[i] = tmp[i];
+    }
+    
+    // get rid of the tmp buffer
+    free(tmp);
+}

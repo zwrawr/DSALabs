@@ -7,7 +7,7 @@
 /// ====
 /// Defines
 /// ====
-#define ITEMS_IN_SORTS_TEST 10000
+#define ITEMS_IN_SORTS_TEST 1000
 
 
 /// ====

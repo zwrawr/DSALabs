@@ -20,8 +20,8 @@ void stack_Deconstructor(Stack *stack);
 int stack_isEmpty(Stack *stack);
 int stack_isFull(Stack *stack);
 int stack_Push(Stack *stack, int value);
-int stack_Pop(Stack *stack, int* popped);
-int stack_Peek(Stack *stack, int index, int* peeked);
+int stack_Pop(Stack *stack, int *popped);
+int stack_Peek(Stack *stack, int index, int *peeked);
 
 
 
