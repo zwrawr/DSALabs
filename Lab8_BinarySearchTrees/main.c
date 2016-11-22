@@ -30,10 +30,11 @@ int main(void)
 		insert(tree, rand() % TEST_SIZE);
 	}
 
-	binarySearchTree_Display(tree);
+	binarySearchTree_Traverse(tree);
 
 	printf("\n\n");
-	binarySearchTree_Traverse(tree);
+
+	binarySearchTree_Display(tree);
 
 	printf("\n\nmax: %d \t min: %d \n", binarySearchTree_Max(tree), binarySearchTree_Min(tree));
 
@@ -41,10 +42,13 @@ int main(void)
 	printf("PRESS KEY TO CONTINUE \n");
 	getchar();
 
-	binarySearchTree_Remove(tree, 10);
+	binarySearchTree_Remove(tree, 5);
+
+	binarySearchTree_Traverse(tree);
 
 	printf("\n\n");
-	binarySearchTree_Traverse(tree);
+
+	binarySearchTree_Display(tree);
 
 	printf("\n\nmax: %d \t min: %d \n", binarySearchTree_Max(tree), binarySearchTree_Min(tree));
 
