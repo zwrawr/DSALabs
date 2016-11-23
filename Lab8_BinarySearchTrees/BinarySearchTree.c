@@ -14,7 +14,9 @@
 /// Prototypes
 /// ====
 char* displayRecurrent(BinarySearchTree * binarySearchTree, char* prefix, int isTail, char* result);
-int height(BinarySearchTree * binarySearchTree);BinarySearchTree* leftRotate(BinarySearchTree *binarySearchTree);BinarySearchTree* rightRotate(BinarySearchTree *binarySearchTree);
+int height(BinarySearchTree * binarySearchTree);
+BinarySearchTree* leftRotate(BinarySearchTree *binarySearchTree);
+BinarySearchTree* rightRotate(BinarySearchTree *binarySearchTree);
 int getBalance(BinarySearchTree *binarySearchTree);
 int maxof(int a, int b);
 BinarySearchTree* insert(BinarySearchTree *binarySearchTree, int value);
@@ -163,7 +165,78 @@ char* displayRecurrent(BinarySearchTree * binarySearchTree, char* prefix, int is
 	}
 
 	return result;
-}int height(BinarySearchTree * binarySearchTree){	if (binarySearchTree == NULL)	{		return 0;	}	else	{		return binarySearchTree->height;	}}BinarySearchTree* rightRotate(BinarySearchTree *binarySearchTree){	BinarySearchTree *leftSide = binarySearchTree->left;	BinarySearchTree *temp = leftSide->right;	leftSide->right = binarySearchTree;	binarySearchTree->left = temp;	binarySearchTree->height = maxof(		height(binarySearchTree->left),		height(binarySearchTree->right))		+ 1;	leftSide->height = maxof(		height(leftSide->left),		height(leftSide->right))		+ 1;	return leftSide;}BinarySearchTree* leftRotate(BinarySearchTree *binarySearchTree){	BinarySearchTree *rigthSide = binarySearchTree->right;	BinarySearchTree *temp = rigthSide->left;	rigthSide->left = binarySearchTree;	binarySearchTree->right = temp;	binarySearchTree->height = maxof(		height(binarySearchTree->left),		height(binarySearchTree->right))		+ 1;	rigthSide->height = maxof(		height(rigthSide->left),		height(rigthSide->right))		+ 1;	return rigthSide;}int getBalance(BinarySearchTree *binarySearchTree){	if (binarySearchTree == NULL)	{		return 0;	}	else	{		return height(binarySearchTree->left) - height(binarySearchTree->right);	}}int maxof(int a, int b){	return (a > b) ? a : b;}BinarySearchTree* insert(BinarySearchTree *binarySearchTree, int value)
+}
+
+int height(BinarySearchTree * binarySearchTree)
+{
+	if (binarySearchTree == NULL)
+	{
+		return 0;
+	}
+	else
+	{
+		return binarySearchTree->height;
+	}
+}
+
+BinarySearchTree* rightRotate(BinarySearchTree *binarySearchTree)
+{
+	BinarySearchTree *leftSide = binarySearchTree->left;
+	BinarySearchTree *temp = leftSide->right;
+
+	leftSide->right = binarySearchTree;
+	binarySearchTree->left = temp;
+
+	binarySearchTree->height = maxof(
+		height(binarySearchTree->left),
+		height(binarySearchTree->right))
+		+ 1;
+	leftSide->height = maxof(
+		height(leftSide->left),
+		height(leftSide->right))
+		+ 1;
+
+	return leftSide;
+}
+
+BinarySearchTree* leftRotate(BinarySearchTree *binarySearchTree)
+{
+	BinarySearchTree *rigthSide = binarySearchTree->right;
+	BinarySearchTree *temp = rigthSide->left;
+
+	rigthSide->left = binarySearchTree;
+	binarySearchTree->right = temp;
+
+	binarySearchTree->height = maxof(
+		height(binarySearchTree->left),
+		height(binarySearchTree->right))
+		+ 1;
+	rigthSide->height = maxof(
+		height(rigthSide->left),
+		height(rigthSide->right))
+		+ 1;
+
+	return rigthSide;
+}
+
+int getBalance(BinarySearchTree *binarySearchTree)
+{
+	if (binarySearchTree == NULL)
+	{
+		return 0;
+	}
+	else
+	{
+		return height(binarySearchTree->left) - height(binarySearchTree->right);
+	}
+}
+
+int maxof(int a, int b)
+{
+	return (a > b) ? a : b;
+}
+
+BinarySearchTree* insert(BinarySearchTree *binarySearchTree, int value)
 {
 	if (binarySearchTree == NULL)
 	{
@@ -219,7 +292,7 @@ BinarySearchTree* removeValue(BinarySearchTree *binarySearchTree, int value)
 
 	if (binarySearchTree == NULL)
 	{
-		return binarySearchTree_Constructor(value);
+		return binarySearchTree;
 	}
 
 	if (value < binarySearchTree->value)
@@ -285,6 +358,8 @@ BinarySearchTree* removeValue(BinarySearchTree *binarySearchTree, int value)
 		binarySearchTree->right = rightRotate(binarySearchTree->right);
 		return leftRotate(binarySearchTree);
 	}
+
+	return binarySearchTree;
 }
 
 BinarySearchTree* minValueNode(BinarySearchTree* binarySearchTree)
