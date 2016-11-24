@@ -26,6 +26,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lab8_BinarySearchTrees", "Lab8_BinarySearchTrees\Lab8_BinarySearchTrees.vcxproj", "{D9B5B602-0E0A-49EB-B016-6FCF8E2731CA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lab9_HashTables", "Lab9_HashTables\Lab9_HashTables.vcxproj", "{9B84011A-757C-419F-B262-B95C4B46B2CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -98,6 +100,14 @@ Global
 		{D9B5B602-0E0A-49EB-B016-6FCF8E2731CA}.Release|x64.Build.0 = Release|x64
 		{D9B5B602-0E0A-49EB-B016-6FCF8E2731CA}.Release|x86.ActiveCfg = Release|Win32
 		{D9B5B602-0E0A-49EB-B016-6FCF8E2731CA}.Release|x86.Build.0 = Release|Win32
+		{9B84011A-757C-419F-B262-B95C4B46B2CB}.Debug|x64.ActiveCfg = Debug|x64
+		{9B84011A-757C-419F-B262-B95C4B46B2CB}.Debug|x64.Build.0 = Debug|x64
+		{9B84011A-757C-419F-B262-B95C4B46B2CB}.Debug|x86.ActiveCfg = Debug|Win32
+		{9B84011A-757C-419F-B262-B95C4B46B2CB}.Debug|x86.Build.0 = Debug|Win32
+		{9B84011A-757C-419F-B262-B95C4B46B2CB}.Release|x64.ActiveCfg = Release|x64
+		{9B84011A-757C-419F-B262-B95C4B46B2CB}.Release|x64.Build.0 = Release|x64
+		{9B84011A-757C-419F-B262-B95C4B46B2CB}.Release|x86.ActiveCfg = Release|Win32
+		{9B84011A-757C-419F-B262-B95C4B46B2CB}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

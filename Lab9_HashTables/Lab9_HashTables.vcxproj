@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D9B5B602-0E0A-49EB-B016-6FCF8E2731CA}</ProjectGuid>
+    <ProjectGuid>{9B84011A-757C-419F-B262-B95C4B46B2CB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Lab8_BinarySearchTrees</RootNamespace>
+    <RootNamespace>Lab9_HashTables</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -152,7 +152,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BinarySearchTree.c">
+    <ClCompile Include="HashTable.c">
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsC</CompileAs>
       <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsC</CompileAs>
     </ClCompile>
@@ -162,7 +162,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BinarySearchTree.h" />
+    <ClInclude Include="HashTable.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
