@@ -10,7 +10,7 @@ typedef struct HashTable HashTable;
 /// ====
 /// Constructors and Destructor
 /// ====
-HashTable *hashTable_Constructor();
+HashTable *hashTable_Constructor(int numBuckets);
 void hashTable_Deconstructor(HashTable *hashTable);
 
 
