@@ -22,12 +22,12 @@ University of York, Department of Electronics, Data Structures and Algorithms, L
 
 ## labs
 
-- [Lab One : Recap](../Lab1_Recap/README.md)
-- [Lab Two : Complex Numbers](../Lab2_ComplexNumbers/README.md)
-- [Lab Three : Array Lists](../Lab3_ArrayLists/README.md)
-- [Lab Four : Linked Lists](../Lab4_LinkedLists/README.md)
-- [Lab Five : Sorting](../Lab5_Sorting/README.md)
-- [Lab Six : Divide And Conquer](../Lab6_DivideAndConquer/README.md)
-- [Lab Seven : Stacks And Queues](../Lab7_StacksAndQueues/README.md)
-- [Lab Eight : Binary Search Trees](../Lab8_BinarySearchTrees/README.md)
-- [Lab Nine : Hash Tables](../Lab9_HashTables/README.md)
+- [Lab One : Recap](https://github.com/zwrawr/DSALabs/tree/master/Lab1_Recap#readme)
+- [Lab Two : Complex Numbers](https://github.com/zwrawr/DSALabs/tree/master/Lab2_ComplexNumbers#readme)
+- [Lab Three : Array Lists](https://github.com/zwrawr/DSALabs/tree/master/Lab3_ArrayLists#readme)
+- [Lab Four : Linked Lists](https://github.com/zwrawr/DSALabs/tree/master/Lab4_LinkedLists#readme)
+- [Lab Five : Sorting](https://github.com/zwrawr/DSALabs/tree/master/Lab5_Sorting#readme)
+- [Lab Six : Divide And Conquer](https://github.com/zwrawr/DSALabs/tree/master/Lab6_DivideAndConquer#readme)
+- [Lab Seven : Stacks And Queues](https://github.com/zwrawr/DSALabs/tree/master/Lab7_StacksAndQueues#readme)
+- [Lab Eight : Binary Search Trees](https://github.com/zwrawr/DSALabs/tree/master/Lab8_BinarySearchTrees#readme)
+- [Lab Nine : Hash Tables](https://github.com/zwrawr/DSALabs/tree/master/Lab9_HashTables#readme)
