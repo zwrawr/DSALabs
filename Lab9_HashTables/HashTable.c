@@ -21,6 +21,7 @@ typedef struct HashElement HashElement;
 /// ====
 HashElement *hashElement_Constructor(char *key, char *value);
 void hashElement_Deconstructor(HashElement *hashElement);
+int hash(char *key, int numBuckets);
 
 
 /// ====
@@ -106,10 +107,43 @@ void hashTable_Deconstructor(HashTable *hashTable)
 /// ====
 /// Public Functions
 /// ====
-
+void hashTable_Insert(struct HashTable *hashTable, char *key, char *value)
+{
+    int hashValue = hash(key, hashTable->numBuckets);
+    
+    HashElement *element = hashElement_Constructor(key, value);
+    
+    if (hashTable->buckets[0] == NULL)
+    {
+        hashTable->buckets[hashValue] = element;
+    }
+    else
+    {
+        HashElement *curr = hashTable->buckets[hashValue];
+        
+        
+        int i = 0;
+        
+        do
+        {
+            curr = curr->next;
+            i++;
+        }
+        while (curr->next != NULL);
+        
+        curr->next = element;
+    }
+    
+    hashTable->numElements++;
+    free(element);
+}
 
 
 /// ====
 /// Helper Functions
 /// ====
+int hash(char *key, int numBuckets)
+{
+    return  key[0] + 2 * key[1] + 4 * key[2] % numBuckets;
+}
 

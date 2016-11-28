@@ -17,7 +17,7 @@ void hashTable_Deconstructor(HashTable *hashTable);
 /// ====
 /// Functions
 /// ====
-
+void hashTable_Insert(HashTable *hashTable, char *key, char *value);
 
 
 

@@ -37,7 +37,7 @@ int main(void)
 /// ====
 /// Functions
 /// ====
-void addStationCodes(HashTable *hasTable)
+void addStationCodes(HashTable *hashTable)
 {
 
     FILE *file;
@@ -62,7 +62,8 @@ void addStationCodes(HashTable *hasTable)
         strncpy_s(stationKey, 4, token, 4);
         token = strtok_s(NULL, ",", &nextToken);
         strncpy_s(stationName, 128, token, 128);
-        printf("%s - %s\n", stationKey, stationName);
+        printf("Added\t::\t%s - %s\n", stationKey, stationName);
+        hashTable_Insert(hashTable, stationKey, stationName);
     }
     
     fclose(file);
