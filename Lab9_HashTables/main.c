@@ -9,7 +9,8 @@
 /// ====
 /// Defines
 /// ====
-#define TEST_SIZE 32
+// set to < 0 to ignore
+#define TEST_NUMBER_OF_STATIONS 1000
 
 /// ====
 /// Prototypes
@@ -24,9 +25,17 @@ int main(void)
 {
     srand((unsigned int)time(NULL));
     
-    HashTable *table = hashTable_Constructor(4);
+    HashTable *table = hashTable_Constructor(HASH_MAX_ALPHABETIC_UPPER_CASE);
     
     addStationCodes(table);
+    
+    printf("PRESS KEY TO DISPLAY HASHTABLE \n");
+    getchar();
+    
+    hashTable_Display(table);
+    
+    printf("PRESS KEY TO DECONSTRUCT HASHTABLE \n");
+    getchar();
     
     hashTable_Deconstructor(table);
     printf("PRESS KEY TO EXIT \n");
@@ -55,7 +64,9 @@ void addStationCodes(HashTable *hashTable)
         return;
     }
     
-    while (fgets(line, sizeof(line), file))
+    int i = TEST_NUMBER_OF_STATIONS;
+    
+    while (fgets(line, sizeof(line), file) && i != 0)
     {
         line[strcspn(line, "\n")] = 0;
         token = strtok_s(line, ",", &nextToken);
@@ -64,6 +75,11 @@ void addStationCodes(HashTable *hashTable)
         strncpy_s(stationName, 128, token, 128);
         printf("Added\t::\t%s - %s\n", stationKey, stationName);
         hashTable_Insert(hashTable, stationKey, stationName);
+        
+        if (i > 0)
+        {
+            i--;
+        }
     }
     
     fclose(file);
