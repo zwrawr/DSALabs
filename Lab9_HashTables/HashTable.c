@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "HashTable.h"
+#include "ConsoleColor.h"
 
 
 /// ====
@@ -9,6 +10,7 @@
 /// ====
 #define MAX_KEY_LENGTH 4
 #define MAX_VALUE_LENGTH 128
+#define MaX_ELEMENTS_IN_BUCKET_TO_BE_PRINTED 4
 
 
 /// ====
@@ -100,6 +102,8 @@ void hashTable_Deconstructor(HashTable *hashTable)
         }
     }
     
+    free(hashTable->buckets);
+    
     free(hashTable);
 }
 
@@ -111,37 +115,88 @@ void hashTable_Insert(struct HashTable *hashTable, char *key, char *value)
 {
     int hashValue = hash(key, hashTable->numBuckets);
     
-    HashElement *element = hashElement_Constructor(key, value);
-    
-    if (hashTable->buckets[0] == NULL)
+    if (hashTable->buckets[hashValue] == NULL)
     {
-        hashTable->buckets[hashValue] = element;
+        hashTable->buckets[hashValue] = hashElement_Constructor(key, value);
     }
     else
     {
         HashElement *curr = hashTable->buckets[hashValue];
         
-        
         int i = 0;
         
-        do
+        while (curr->next != NULL)
         {
             curr = curr->next;
             i++;
         }
-        while (curr->next != NULL);
         
-        curr->next = element;
+        curr->next = hashElement_Constructor(key, value);;
     }
     
     hashTable->numElements++;
-    free(element);
+}
+
+void hashTable_Display(struct HashTable *hashTable)
+{
+    printf("HashTable\n");
+    
+    for (int i = 0; i < hashTable->numBuckets; i++)
+    {
+        if (hashTable->buckets[i] != NULL)
+        {
+            consoleColors_SetColor(FG_BLUE);
+            printf("\tBucket[ %d ]", i);
+            consoleColors_RestoreDefault();
+            printf("\titems[ ");
+            
+            HashElement *curr = hashTable->buckets[i];
+            
+            int elementsPrinted = 0;
+            
+            while (curr->next != NULL)
+            {
+                if (elementsPrinted < MaX_ELEMENTS_IN_BUCKET_TO_BE_PRINTED)
+                {
+                    printf("( %s, %s ), ", curr->key, curr->value);
+                }
+                else if (elementsPrinted == MaX_ELEMENTS_IN_BUCKET_TO_BE_PRINTED)
+                {
+                    consoleColors_SetColor(FG_RED | FG_INTENSE);
+                    printf(" +");
+                }
+                else
+                {
+                    printf("+");
+                }
+                
+                elementsPrinted++;
+                curr = curr->next;
+            }
+            
+            if (elementsPrinted < MaX_ELEMENTS_IN_BUCKET_TO_BE_PRINTED)
+            {
+                printf("( %s, %s ) ]\n", curr->key, curr->value);
+            }
+            else
+            {
+                consoleColors_SetColor(FG_RED | FG_INTENSE);
+                printf("+");
+                consoleColors_RestoreDefault();
+                printf(" ]\n");
+            }
+        }
+    }
+    
+    printf("\n\n");
 }
 
 
 /// ====
 /// Helper Functions
 /// ====
+
+// max hash is 630 if key is upper case alphibetic, if it uses lower case then max is 854
 int hash(char *key, int numBuckets)
 {
     return  key[0] + 2 * key[1] + 4 * key[2] % numBuckets;
