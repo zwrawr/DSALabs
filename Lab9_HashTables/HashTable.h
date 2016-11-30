@@ -4,15 +4,7 @@
 /// ====
 /// Defines
 /// ====
-<<<<<<< HEAD
 #define HASH_TABLE_DEFAULT_SIZE 1000
-=======
-#define HASH_MAX_ALPHABETIC_UPPER_CASE 631
-#define HASH_MAX_ALPHABETIC_LOWER_CASE 855
-#define HASH_MAX_ASCII 890
->>>>>>> 06897a9b5222c0865995e92eaf2e1a93779f7240
-
-
 
 /// ====
 /// TypeDefs
