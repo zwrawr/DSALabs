@@ -10,7 +10,8 @@
 /// ====
 #define MAX_KEY_LENGTH 4
 #define MAX_VALUE_LENGTH 128
-#define MaX_ELEMENTS_IN_BUCKET_TO_BE_PRINTED 4
+#define MAX_ELEMENTS_IN_BUCKET_TO_BE_PRINTED 4
+#define HASH_VALUE 5381
 
 
 /// ====
@@ -156,11 +157,11 @@ void hashTable_Display(struct HashTable *hashTable)
             
             while (curr->next != NULL)
             {
-                if (elementsPrinted < MaX_ELEMENTS_IN_BUCKET_TO_BE_PRINTED)
+                if (elementsPrinted < MAX_ELEMENTS_IN_BUCKET_TO_BE_PRINTED)
                 {
                     printf("( %s, %s ), ", curr->key, curr->value);
                 }
-                else if (elementsPrinted == MaX_ELEMENTS_IN_BUCKET_TO_BE_PRINTED)
+                else if (elementsPrinted == MAX_ELEMENTS_IN_BUCKET_TO_BE_PRINTED)
                 {
                     consoleColors_SetColor(FG_RED | FG_INTENSE);
                     printf(" +");
@@ -174,7 +175,7 @@ void hashTable_Display(struct HashTable *hashTable)
                 curr = curr->next;
             }
             
-            if (elementsPrinted < MaX_ELEMENTS_IN_BUCKET_TO_BE_PRINTED)
+            if (elementsPrinted < MAX_ELEMENTS_IN_BUCKET_TO_BE_PRINTED)
             {
                 printf("( %s, %s ) ]\n", curr->key, curr->value);
             }
@@ -196,9 +197,15 @@ void hashTable_Display(struct HashTable *hashTable)
 /// Helper Functions
 /// ====
 
-// max hash is 630 if key is upper case alphibetic, if it uses lower case then max is 854
 int hash(char *key, int numBuckets)
 {
-    return  key[0] + 2 * key[1] + 4 * key[2] % numBuckets;
+    int hashValue = HASH_VALUE, c;
+    
+    while (c = *key++)
+    {
+        hashValue = ((hashValue << 5) + hashValue) + c;
+    }
+    
+    return hashValue % numBuckets;
 }
 

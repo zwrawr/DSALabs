@@ -4,9 +4,7 @@
 /// ====
 /// Defines
 /// ====
-#define HASH_MAX_ALPHABETIC_UPPER_CASE 630
-#define HASH_MAX_ALPHABETIC_LOWER_CASE 854
-#define HASH_MAX_ASCII 889
+#define HASH_TABLE_DEFAULT_SIZE 1000
 
 
 
