@@ -25,6 +25,7 @@ void hashTable_Deconstructor(HashTable *hashTable);
 void hashTable_Insert(HashTable *hashTable, char *key, char *value);
 void hashTable_Display(struct HashTable *hashTable);
 char *hashTable_Search(HashTable *hashTable, char *key);
+float hashTable_GetLoadFactor(HashTable *hashTable);
 
 
 #endif // HASHTABLE_H_INCLUDED

@@ -225,9 +225,14 @@ char *hashTable_Search(HashTable *hashTable, char *key)
     return NULL;
 }
 
+float hashTable_GetLoadFactor(HashTable *hashTable)
+{
+    return (float)hashTable->numElements / (float)hashTable->numBuckets;
+}
+
 
 /// ====
-/// Helper Functions
+/// Private Functions
 /// ====
 
 int hash(char *key, int numBuckets)
