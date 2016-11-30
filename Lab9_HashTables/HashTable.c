@@ -146,7 +146,7 @@ void hashTable_Display(struct HashTable *hashTable)
     {
         if (hashTable->buckets[i] != NULL)
         {
-            consoleColors_SetColor(FG_BLUE);
+            consoleColors_SetColor(FG_BLUE | FG_INTENSE);
             printf("\tBucket[ %d ]", i);
             consoleColors_RestoreDefault();
             printf("\titems[ ");
@@ -230,6 +230,68 @@ float hashTable_GetLoadFactor(HashTable *hashTable)
     return (float)hashTable->numElements / (float)hashTable->numBuckets;
 }
 
+void hashTable_Remove(HashTable *hashTable, char *key)
+{
+    int hashValue = hash(key, hashTable->numBuckets);
+    
+    HashElement *last = NULL;
+    HashElement *curr = hashTable->buckets[hashValue];
+    
+    if (curr == NULL)
+    {
+        return;
+    }
+    
+    while (curr->next != NULL)
+    {
+    
+        if (strcmp(key, curr->key) == 0)
+        {
+            if (last == NULL)
+            {
+                //we are the first node
+                hashTable->buckets[hashValue] = curr->next;
+            }
+            else
+            {
+				//we are some middle node
+                last->next = curr->next;
+            }
+            
+            // destroy curr
+            free(curr->key);
+            free(curr->value);
+            free(curr);
+            hashTable->numElements--;
+            return;
+        }
+        
+        last = curr;
+        curr = curr->next;
+    }
+    
+    if (strcmp(key, curr->key) == 0)
+    {
+        // were the last item
+        if (last == NULL)
+        {
+            //we are the only node
+            hashTable->buckets[hashValue] = NULL;
+        }
+        else
+        {
+			//were the last node but be have a node before us
+            last->next = NULL;
+        }
+        
+        // destroy curr
+        free(curr->key);
+        free(curr->value);
+        free(curr);
+        hashTable->numElements--;
+        return;
+    }
+}
 
 /// ====
 /// Private Functions

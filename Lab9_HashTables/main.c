@@ -48,6 +48,16 @@ int main(void)
     
     printf("\nLoad factor :: %f \n", hashTable_GetLoadFactor(table));
     
+    printf("PRESS KEY TO REMOVE KEY VALUE PAIR FROM HASHTABLE \n");
+    getchar();
+    
+    char *stationCode = "OXF";
+    printf("Searching for %s before its removed :: found %s\n", stationCode, hashTable_Search(table, stationCode));
+    hashTable_Remove(table, stationCode);
+    printf("Searching for %s after its removed :: found %s\n", stationCode, hashTable_Search(table, stationCode));
+    hashTable_Insert(table, stationCode, "Test!");
+    printf("Searching for %s when its been readded :: found %s\n", stationCode, hashTable_Search(table, stationCode));
+    
     printf("PRESS KEY TO DECONSTRUCT HASHTABLE \n");
     getchar();
     
