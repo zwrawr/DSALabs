@@ -192,6 +192,39 @@ void hashTable_Display(struct HashTable *hashTable)
     printf("\n\n");
 }
 
+char *hashTable_Search(HashTable *hashTable, char *key)
+{
+    int hashValue = hash(key, hashTable->numBuckets);
+    
+    HashElement *curr = hashTable->buckets[hashValue];
+    
+    if (curr == NULL)
+    {
+        return NULL;
+    }
+    
+    while ( curr->next != NULL)
+    {
+        if (strcmp(curr->key, key) == 0)
+        {
+            char *string = malloc(MAX_VALUE_LENGTH * sizeof(char));
+            strcpy_s(string, MAX_VALUE_LENGTH, curr->value);
+            return  string;
+        }
+        
+        curr = curr->next;
+    }
+    
+    if (strcmp(curr->key, key) == 0)
+    {
+        char *string = malloc(MAX_VALUE_LENGTH * sizeof(char));
+        strcpy_s(string, MAX_VALUE_LENGTH, curr->value);
+        return  string;
+    }
+    
+    return NULL;
+}
+
 
 /// ====
 /// Helper Functions

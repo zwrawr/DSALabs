@@ -34,6 +34,15 @@ int main(void)
     
     hashTable_Display(table);
     
+    printf("PRESS KEY TO SEARCH HASHTABLE\n");
+    getchar();
+    
+    printf("Searching for YRK :: found %s\n", hashTable_Search(table, "YRK"));
+    printf("Searching for SCU :: found %s\n", hashTable_Search(table, "SCU"));
+    printf("Searching for OXF :: found %s\n", hashTable_Search(table, "OXF"));
+    printf("Searching for ZZZ :: found %s\n", hashTable_Search(table, "ZZZ"));
+    printf("\n");
+    
     printf("PRESS KEY TO DECONSTRUCT HASHTABLE \n");
     getchar();
     
