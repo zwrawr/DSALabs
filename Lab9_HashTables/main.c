@@ -43,6 +43,11 @@ int main(void)
     printf("Searching for ZZZ :: found %s\n", hashTable_Search(table, "ZZZ"));
     printf("\n");
     
+    printf("PRESS KEY TO GET LOAD FACTOR OF HASHTABLE \n");
+    getchar();
+    
+    printf("\nLoad factor :: %f \n", hashTable_GetLoadFactor(table));
+    
     printf("PRESS KEY TO DECONSTRUCT HASHTABLE \n");
     getchar();
     
