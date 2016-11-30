@@ -4,9 +4,9 @@
 /// ====
 /// Defines
 /// ====
-#define HASH_MAX_ALPHABETIC_UPPER_CASE 630
-#define HASH_MAX_ALPHABETIC_LOWER_CASE 854
-#define HASH_MAX_ASCII 889
+#define HASH_MAX_ALPHABETIC_UPPER_CASE 631
+#define HASH_MAX_ALPHABETIC_LOWER_CASE 855
+#define HASH_MAX_ASCII 890
 
 
 
@@ -28,7 +28,7 @@ void hashTable_Deconstructor(HashTable *hashTable);
 /// ====
 void hashTable_Insert(HashTable *hashTable, char *key, char *value);
 void hashTable_Display(struct HashTable *hashTable);
-
+char *hashTable_Search(HashTable *hashTable, char *key);
 
 
 #endif // HASHTABLE_H_INCLUDED
