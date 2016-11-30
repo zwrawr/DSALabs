@@ -254,13 +254,11 @@ void hashTable_Remove(HashTable *hashTable, char *key)
             }
             else
             {
-				//we are some middle node
+                //we are some middle node
                 last->next = curr->next;
             }
             
             // destroy curr
-            free(curr->key);
-            free(curr->value);
             free(curr);
             hashTable->numElements--;
             return;
@@ -280,13 +278,11 @@ void hashTable_Remove(HashTable *hashTable, char *key)
         }
         else
         {
-			//were the last node but be have a node before us
+            //were the last node but be have a node before us
             last->next = NULL;
         }
         
         // destroy curr
-        free(curr->key);
-        free(curr->value);
         free(curr);
         hashTable->numElements--;
         return;
