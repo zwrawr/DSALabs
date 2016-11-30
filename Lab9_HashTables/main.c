@@ -25,7 +25,7 @@ int main(void)
 {
     srand((unsigned int)time(NULL));
     
-    HashTable *table = hashTable_Constructor(HASH_MAX_ALPHABETIC_UPPER_CASE);
+    HashTable *table = hashTable_Constructor(HASH_TABLE_DEFAULT_SIZE);
     
     addStationCodes(table);
     
